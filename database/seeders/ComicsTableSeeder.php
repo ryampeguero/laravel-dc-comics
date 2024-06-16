@@ -12,8 +12,7 @@ class ComicsTableSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        
+    {   
         $data = config('comics');
 
         foreach ($data as $comic) {
