@@ -13,8 +13,13 @@ class ComicsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $newComic = new Comic();
-        dd(config(comics));
-        $newComic->fill(config('comics'));
+        
+        $data = config('comics');
+
+        foreach ($data as $comic) {
+            $newComic = new Comic();
+            $newComic->fill($comic);
+            $newComic->save();
+        }
     }
 }
