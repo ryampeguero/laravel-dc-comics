@@ -22,11 +22,11 @@
                                 <a class="btn btn-success" href="{{ route('comics.edit', ['comic' => $comic->id]) }}">
                                     Modifica
                                 </a>
-
-                                <form action="{{route('comics.destroy',['comic' => $comic->id])}}" method="POST">
+                                <form id="formDelete" action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">Elimina</button>
+                                    <button class="btn btn-danger prova" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Elimina</button>
                                 </form>
                             </div>
                         </div>
@@ -34,5 +34,25 @@
                 </div>
             @endforeach
         </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+        <div class="modal-dialog">
+            <div class="modal-content text-bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sicuro di voler eliminare?</h1>
+                </div>
+                <div class="modal-body text-bg-danger">
+                    <h4>Non si torna indietro</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="delete" type="button" class="btn btn-danger">Cancella</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
