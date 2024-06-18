@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="container mt-5">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>
+                            {{ $error }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row">
             <div class="col-2"></div>
 
@@ -11,44 +22,46 @@
                     @method('PUT')
                     <div class="mb-3">
                         <label for="title" class="form-label">Titolo</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ $comic->title }}">
+                        <input type="text" class="form-control" id="title" name="title"
+                            value="{{ old('title', $comic->title) }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Descrizione</label>
                         <input type="text" class="form-control" id="description" name="description"
-                            value="{{ $comic->description }}">
+                            value="{{ old('description', $comic->description) }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="thumb" class="form-label">Percorso Fotografia</label>
                         <input type="text" class="form-control" id="thumb" name="thumb"
-                            value="{{ $comic->thumb }}">
+                            value="{{ old('thumb', $comic->thumb) }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="price" class="form-label">Prezzo</label>
                         <input type="text" class="form-control" id="price" name="price"
-                            value="{{ $comic->price }}">
+                            value="{{ old('price', $comic->price) }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="series" class="form-label">Series</label>
                         <input type="text" class="form-control" id="series" name="series"
-                            value="{{ $comic->series }}">
+                            value="{{ old('series', $comic->series) }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="sale_date" class="form-label">Data d'uscita</label>
                         <input type="date" class="form-control" id="sale_date" name="sale_date"
-                            value="{{ $comic->sale_date }}">
+                            value="{{ old('sale_date',$comic->sale_date) }}">
                     </div>
 
                     <div class="mb-3">
+                        <label for="type">Tipo</label>
                         <select name="type" id="type">
-                            <option selected>Seleziona</option>
-                            <option value="comic">Comic</option>
-                            <option value="graphic">Graphic Novel</option>
+                            <option>Seleziona</option>
+                            <option @selected(old('type') == 'comic') value="comic">Comic</option>
+                            <option @selected(old('type') == 'graphic') value="graphic">Graphic Novel</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-warning">Submit</button>
