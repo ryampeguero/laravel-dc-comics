@@ -22,10 +22,12 @@
                                 <a class="btn btn-success" href="{{ route('comics.edit', ['comic' => $comic->id]) }}">
                                     Modifica
                                 </a>
-                                <form id="formDelete" action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="POST">
+                                <form id="formDelete" action="{{ route('comics.destroy', ['comic' => $comic->id]) }}"
+                                    method="POST" 
+                                    data-comic-title="{{ $comic->title }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger prova" data-bs-toggle="modal"
+                                    <button id="btn-form" class="btn btn-danger prova" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Elimina</button>
                                 </form>
                             </div>
@@ -42,7 +44,7 @@
         <div class="modal-dialog">
             <div class="modal-content text-bg-dark">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sicuro di voler eliminare?</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" class="modal-title">Sicuro di voler eliminare?</h1>
                 </div>
                 <div class="modal-body text-bg-danger">
                     <h4>Non si torna indietro</h4>
